@@ -22,10 +22,10 @@ app.use(express.static(__dirname+'/public'));
 app.get('/', function(req, res) {
     res.render('home');
 });
-// app.get('/test', function(req, res) {
-//     res.type('text/html');
-//     res.render('test');
-// });
+app.get('/travelTime', function(req, res) {
+    res.type('text/html');
+    res.render('Analysis/travelTime');
+});
 
 /**
  * Handlers
@@ -42,7 +42,7 @@ app.use(function(req, res) {
 
 //custom 500 page
 app.use(function(err, req, res, next) {
-    console.err(err.stack);
+    console.error(err.stack);
     res.status(500);
     res.render('500');
 });
