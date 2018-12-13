@@ -15,6 +15,13 @@ app.set('port', process.env.PORT || 3000);
 //add the public directory to serve it to client:
 app.use(express.static(__dirname+'/public'));
 
+//Enable CORS routes
+// app.all('/', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+// });
+
 /**
  * Routes
  * app.VERB ignores trailing slashes, things after ? for query strings, etc.  it just works
@@ -22,9 +29,13 @@ app.use(express.static(__dirname+'/public'));
 app.get('/', function(req, res) {
     res.render('home');
 });
-app.get('/travelTime', function(req, res) {
+app.get('/Analysis/travelTime', function(req, res) {
     res.type('text/html');
     res.render('Analysis/travelTime');
+});
+app.get('/FeatureLayers/anyProjection', function(req, res) {
+    res.type('text/html');
+    res.sendFile(__dirname + '/views/FeatureLayers/anyProjection.html');
 });
 
 /**
