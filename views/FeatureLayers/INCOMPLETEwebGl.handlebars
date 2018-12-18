@@ -1,0 +1,88 @@
+<head>
+    <!--Web GL can be used to speed renderings and have more features on display for aggregations, but the feature layer has limitations
+    Most notably, it cannot be edited, only click events are detected, must not use labels, and must be hosted on ArcGIS online-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+    <title>Render FeatureLayer with WebGL</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.27/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.27/esri/css/esri.css">
+
+    <style>
+        html, body, #mapDiv{
+        padding:0;
+        margin:0;
+        height:100%;
+        width: 100%;
+        }
+        #infoDiv {
+        height: 320px;
+        z-index: 2;
+        padding: 10px;
+        width: 250px;
+        background-color: white;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        font-family: Verdana, Helvetica, sans-serif;
+        font-size: 16px;
+        color: #444;
+        text-align: center;
+        }
+    </style>     
+    <script>
+        //enable webGL on featureLayer for faster render updates and display of more features
+        var dojoConfig = {
+            has: {
+                'esri-featurelayer-webgl' : 1
+            }
+        };
+
+    </script>
+        
+    
+    <script src="https://js.arcgis.com/3.27/"></script>
+    <script>
+        require([
+        "esri/map",
+        "esri/urlUtils",
+        "esri/arcgis/utils",
+        "esri/dijit/ColorInfoSlider",
+        "dojo/domReady!"
+        ], function(
+        Map,
+        urlUtils,
+        arcgisUtils,
+        ColorInfoSlider
+        ) {
+            //if accessing webmap from a portal outside of arcgis online, uncomment and replace path with path to portal url
+            // arcgisUtils.arcgisUrl = "https://pathto/portal/sharing/content/items";
+
+            //arcgisUtils.createMap("a5b3d1196239447a880f3e47e5ed467a", "mapDiv").then(function (response) {
+                
+            //});
+            var map = new Map('mapDiv', {
+                basemap: 'gray',
+                center: [-100, 30],
+                zoom: 4
+            });
+            var zipCodeLayerId = map.graphicsLayerIds[0];
+            var zipCodeLayer = map.getLayer(zipCodeLayer);
+
+            var renderer = zipCodeLayer.renderer;
+            var authoringColorInfo = renderer.authoringInfo.visualVariables[0];
+            var colorVisualVariable = renderer.visualVariables.filter(function(vv) {
+                return vv.type ===authoringColorInfo.type;
+            })[0]; 
+            //I need to return to this after I learn more about renderers
+        });
+    </script>
+
+</head>
+<body class="claro">
+  <div id="mapDiv"></div>
+  <div id="infoDiv">
+      <span id="title"></span>
+      <div id="colorSliderElement"></div>
+  </div>
+</body>

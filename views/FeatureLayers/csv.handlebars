@@ -32,7 +32,7 @@
             Map, CSVLayer, Color, SimpleMarkerSymbol, SimpleRenderer, InfoTemplate, esriConfig
         ){
             esriConfig.defaults.io.corsEnabledServers.push("earthquake.usgs.gov"); // supports CORS
-            map = new Map('map', {
+            var map = new Map('map', {
                 basemap: 'gray',
                 center: [-60, -10],
                 zoom: 4

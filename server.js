@@ -41,6 +41,10 @@ app.get('/FeatureLayers/csv', function(req, res) {
     res.type('text/html');
     res.render('FeatureLayers/csv');
 });
+app.get('/FeatureLayers/webGl', function(req, res) {
+    res.type('text/html');
+    res.render('FeatureLayers/webGl');
+});
 
 /**
  * Handlers
