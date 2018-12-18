@@ -15,12 +15,12 @@ app.set('port', process.env.PORT || 3000);
 //add the public directory to serve it to client:
 app.use(express.static(__dirname+'/public'));
 
-//Enable CORS routes
-// app.all('/', function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//     next();
-// });
+//use cors
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 /**
  * Routes
@@ -36,6 +36,10 @@ app.get('/Analysis/travelTime', function(req, res) {
 app.get('/FeatureLayers/anyProjection', function(req, res) {
     res.type('text/html');
     res.sendFile(__dirname + '/views/FeatureLayers/anyProjection.html');
+});
+app.get('/FeatureLayers/csv', function(req, res) {
+    res.type('text/html');
+    res.render('FeatureLayers/csv');
 });
 
 /**
