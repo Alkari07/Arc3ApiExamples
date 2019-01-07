@@ -45,6 +45,10 @@ app.get('/FeatureLayers/webGl', function(req, res) {
     res.type('text/html');
     res.render('FeatureLayers/webGl');
 });
+app.get('/Renderers/basicClustering', function(req, res) {
+    res.type('text/html');
+    res.render('RenderersSymbolsVisualization/basicClustering');
+});
 
 /**
  * Handlers
