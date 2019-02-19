@@ -53,6 +53,10 @@ app.get('/Renderers/proportionalLines', function(req, res) {
     res.type('text/html');
     res.render('RenderersSymbolsVisualization/proportionalLines');
 });
+app.get('/Renderers/proportionalPoints', function(req, res) {
+    res.type('text/html');
+    res.render('RenderersSymbolsVisualization/proportionalPoints');
+});
 
 /**
  * Handlers
