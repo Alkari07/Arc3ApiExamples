@@ -49,6 +49,10 @@ app.get('/Renderers/basicClustering', function(req, res) {
     res.type('text/html');
     res.render('RenderersSymbolsVisualization/basicClustering');
 });
+app.get('/Renderers/proportionalLines', function(req, res) {
+    res.type('text/html');
+    res.render('RenderersSymbolsVisualization/proportionalLines');
+});
 
 /**
  * Handlers
