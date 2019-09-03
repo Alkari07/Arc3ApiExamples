@@ -57,6 +57,10 @@ app.get('/Renderers/proportionalPoints', function(req, res) {
     res.type('text/html');
     res.render('RenderersSymbolsVisualization/proportionalPoints');
 });
+app.get('/Search/basic', function(req, res) {
+    res.type('text/html');
+    res.render('Search/basic');
+});
 
 /**
  * Handlers
