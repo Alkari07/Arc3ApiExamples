@@ -61,6 +61,10 @@ app.get('/Search/basic', function(req, res) {
     res.type('text/html');
     res.render('Search/basic');
 });
+app.get('/Search/searchMultiple', function(req, res) {
+    res.type('text/html');
+    res.render('Search/searchMultiple');
+});
 
 /**
  * Handlers
